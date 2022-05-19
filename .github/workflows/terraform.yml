@@ -13,8 +13,8 @@ jobs:
     runs-on: ubuntu-latest
     environment: production
     env :
-      AWS_ACCESS_KEY_ID : ${{ secrets.AWS_ACCESS_KEY_ID }}
-      AWS_SECRET_KEY_ID :  ${{ secrets.AWS_SECRET_KEY_ID }}
+      AWS_ACCESS_KEY_ID : 'AKIASM7IGSBICRV47B2W'
+      AWS_SECRET_KEY_ID :  'afKNuo/wF6KMYNJiAPBwUf3f2+M2pfxG3F860rCm'
       AWS_REGION : 'us-east-1'
 
     # Use the Bash shell regardless whether the GitHub Actions runner is ubuntu-latest, macos-latest, or windows-latest
@@ -43,6 +43,6 @@ jobs:
     - name: Terraform Plan
       run: terraform plan -input=false
       env :
-         AWS_ACCESS_KEY_ID : ${{ secrets.AWS_ACCESS_KEY_ID }}
-         AWS_SECRET_KEY_ID :  ${{ secrets.AWS_SECRET_KEY_ID }}
+         AWS_ACCESS_KEY_ID : 'AKIASM7IGSBICRV47B2W'
+         AWS_SECRET_KEY_ID : 'afKNuo/wF6KMYNJiAPBwUf3f2+M2pfxG3F860rCm'
          AWS_REGION : 'us-east-1'
