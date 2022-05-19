@@ -23,26 +23,35 @@ jobs:
         shell: bash
 
     steps:
-    # Checkout the repository to the GitHub Actions runner
-    - name: Checkout
-      uses: actions/checkout@v3
+steps:
+- task: TerraformInstaller@0
+  inputs:
+    terraformVersion: 'latest'
 
-    # Install the latest version of Terraform CLI and configure the Terraform CLI configuration file with a Terraform Cloud user API token
-    - name: Setup Terraform
-      uses: hashicorp/setup-terraform@v1
+- task: TerraformTaskV3@3
+  inputs:
+    provider: 'azurerm'
+    command: 'init'
+    env :
+      AWS_ACCESS_KEY_ID : 'AKIASM7IGSBICRV47B2W'
+      AWS_SECRET_KEY_ID :  'afKNuo/wF6KMYNJiAPBwUf3f2+M2pfxG3F860rCm'
+      AWS_REGION : 'us-east-1'
 
-    # Initialize a new or existing Terraform working directory by creating initial files, loading any remote state, downloading modules, etc.
-    - name: Terraform Init
-      run: terraform init
+- task: TerraformTaskV3@3
+  inputs:
+    provider: 'azurerm'
+    command: 'validate'
 
-    # Checks that all Terraform configuration files adhere to a canonical format
-    - name: Terraform Format
-      run: terraform fmt -check
+- task: TerraformTaskV3@3
+  inputs:
+    provider: 'azurerm'
+    command: 'plan'
+    env :
+      AWS_ACCESS_KEY_ID : 'AKIASM7IGSBICRV47B2W'
+      AWS_SECRET_KEY_ID :  'afKNuo/wF6KMYNJiAPBwUf3f2+M2pfxG3F860rCm'
+      AWS_REGION : 'us-east-1'
 
-    # Generates an execution plan for Terraform
-    - name: Terraform Plan
-      run: terraform plan -input=false
-      env :
-         AWS_ACCESS_KEY_ID : 'AKIASM7IGSBICRV47B2W'
-         AWS_SECRET_KEY_ID : 'afKNuo/wF6KMYNJiAPBwUf3f2+M2pfxG3F860rCm'
-         AWS_REGION : 'us-east-1'
+- task: TerraformTaskV3@3
+  inputs:
+    provider: 'azurerm'
+    command: 'apply'
