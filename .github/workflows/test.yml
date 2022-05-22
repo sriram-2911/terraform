@@ -26,6 +26,10 @@ jobs:
         
       - name: Show Destroy plan
         run: terraform plan -destroy
+        env:
+          AWS_ACCESS_KEY_ID: "AKIASM7IGSBIDEHELE6R"
+          AWS_SECRET_ACCESS_KEY: "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"
+          AWS_REGION: "us-east-1"
         continue-on-error: true
 
       - name: Terraform destroy
