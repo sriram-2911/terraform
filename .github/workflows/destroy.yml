@@ -1,0 +1,28 @@
+name: 'CI-terraform-destroy-aws-from-master-development'
+
+on:
+  repository_dispatch:
+    types: do-terraform-destroy-aws-from-master-development
+
+jobs:
+  terraform-destroy-aws-from-master-development-build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30 # default 360
+    steps:
+    - uses: actions/checkout@v1
+      with:
+        ref: 'main'
+        fetch-depth: '1'
+    - name: 'Print dependencies'
+      run: |
+        ./ci-print-dependencies.sh
+    - name: 'CI terraform destroy Command'
+      timeout-minutes: 20
+      env:
+        ENV_NAME: 'development'
+        AWS_ACCESS_KEY_ID: "AKIASM7IGSBIDEHELE6R"
+        AWS_SECRET_ACCESS_KEY: "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"
+        AWS_DEFAULT_REGION: "us-east-1"
+        AWS_DEFAULT_OUTPUT: 'json'
+      run: |
+        ./destroy.sh
