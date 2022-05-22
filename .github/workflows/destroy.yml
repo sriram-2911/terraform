@@ -1,8 +1,6 @@
-name: 'CI-terraform-destroy-aws-from-master-development'
-
+name: Terraform Destroy
 on:
-  repository_dispatch:
-    types: do-terraform-destroy-aws-from-master-development
+ workflow_dispatch:
 
 jobs:
   terraform-destroy-aws-from-master-development-build:
