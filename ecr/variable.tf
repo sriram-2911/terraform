@@ -1,6 +1,6 @@
 variable "name" {
   type    = string
-  default = "test"
+  default = "test1"
 }
 variable "encryption_type" {
   type    = string
