@@ -3,7 +3,7 @@ name: 'Terraform'
 on:
   push:
     paths:
-      - ecr/**
+      - 'ecr/**'
   pull_request:
 
 permissions:
