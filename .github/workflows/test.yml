@@ -18,7 +18,8 @@ jobs:
 
       - name: Terraform Init
         id: init
-        run: terraform init 
+        run: terraform init
+        working-directory: ./vpc
         env:
           AWS_ACCESS_KEY_ID: "AKIASM7IGSBIDEHELE6R"
           AWS_SECRET_ACCESS_KEY: "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"
@@ -26,11 +27,12 @@ jobs:
         
       - name: Show Destroy plan
         run: terraform plan
+        working-directory: ./vpc
         env:
           AWS_ACCESS_KEY_ID: "AKIASM7IGSBIDEHELE6R"
           AWS_SECRET_ACCESS_KEY: "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"
           AWS_REGION: "us-east-1"
-        continue-on-error: true
+        continue-on-error: false
 
       - name: Terraform destroy
         id: destroy
